@@ -8,10 +8,12 @@ type Student struct {
 	Nickname  string
 	GrpNumber int
 	marks     []int
+	AvrgMark  float32
 }
 
 func NewStudent(name, nickname string, age, grpNumber int) *Student {
 	newSlice := make([]int, 0, 5)
+	avrgRslt := 0
 
 	return &Student{
 		Name:      name,
@@ -19,6 +21,7 @@ func NewStudent(name, nickname string, age, grpNumber int) *Student {
 		Age:       age,
 		GrpNumber: grpNumber,
 		marks:     newSlice,
+		AvrgMark:  avrgRslt,
 	}
 }
 
@@ -27,15 +30,15 @@ func (stud Student) AddMark() {
 	fmt.Println("Напишите добавляемую оценку")
 	fmt.Scan(&mark)
 	stud.marks = append(stud.marks, mark)
+	stud.Calculate()
 }
 
-func (stud Student) Calculate() {
+func (stud Student) Calculate() float32 {
+	var avg float32
 	numb := 0
 	for _, val := range stud.marks {
 		numb += val
 	}
-	result := numb / len(stud.marks)
 
-	fmt.Println(result)
-	fmt.Print("hi")
+	stud.AvrgMark = (float32)numb / len(stud.marks)
 }

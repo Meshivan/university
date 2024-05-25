@@ -1,12 +1,16 @@
 package group
 
+import (
+	"awesomeProject3/student"
+)
+
 type Group struct {
 	Number      int
-	GrpStudents []string
+	GrpStudents []student.Student
 }
 
 func NewGroup(number int) *Group {
-	studSlice := make([]string, 0, 10)
+	studSlice := make([]student.Student, 0, 10)
 
 	return &Group{
 		Number:      number,
@@ -14,6 +18,6 @@ func NewGroup(number int) *Group {
 	}
 }
 
-func (grp Group) AddToGroup(stud Student) {
+func (grp Group) AddToGroup(stud student.Student) {
 	append(grp.GrpStudents, stud)
 }
